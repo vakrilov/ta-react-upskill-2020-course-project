@@ -94,21 +94,23 @@ const store = createStore<Store, any, {}, {}>(
 // INIT
 const storeDispatch = store.dispatch;
 
-const fetchColors = async (dispatch) => {
-  const data = await fetch(`${URL}/colors`);
+export const fetchColors = () => async (dispatch) => {
+const data = await fetch(`${URL}/colors`);
   const colors = await data.json();
   console.log("Colors fetched:", colors);
   dispatch(initColors(colors));
 };
 
-const fetchVRScans = async (dispatch) => {
-  const data = await fetch(`${URL}/vrscans?_page=1&_limit=20`);
+export const fetchVRScans = () => async (dispatch) => {
+  await new Promise(resolve => setTimeout(resolve, 500));
+
+  const data = await fetch(`${URL}/vrscans?_page=1&_limit=30`);
   const scans = await data.json();
   console.log("VR Scans fetched:", scans);
   dispatch(addScans(scans));
 };
 
-storeDispatch(fetchColors);
-storeDispatch(fetchVRScans);
+storeDispatch(fetchColors());
+storeDispatch(fetchVRScans());
 
 export default store;
