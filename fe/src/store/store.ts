@@ -12,7 +12,12 @@ import { Store } from "./types";
 const composeEnhancers =
   (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-// const logger: Middleware<{}, Store, any> = (store) => (next) => (action) => {};
+const logger: Middleware<{}, Store, any> = (store) => (next) => (action) => {
+  console.log(action);
+  console.log("BEFORE:", store.getState());
+  next(action)
+  console.log("AFTER:", store.getState());
+};
 
 const store = createStore<Store, any, {}, {}>(
   combineReducers({
@@ -20,7 +25,7 @@ const store = createStore<Store, any, {}, {}>(
     colors: colorsReducer,
     vrScans: vrScansReducer,
   }),
-  composeEnhancers(applyMiddleware(thunk))
+  composeEnhancers(applyMiddleware(thunk, logger))
 );
 
 export default store;

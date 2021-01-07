@@ -8,7 +8,7 @@ import { Provider } from "react-redux";
 import store from "./store/store";
 
 // Make initial requests
-// store.dispatch(fetchColors());
+store.dispatch(fetchColors());
 // store.dispatch(fetchVRScans());
 
 ReactDOM.render(
