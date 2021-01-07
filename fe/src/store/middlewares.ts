@@ -20,7 +20,10 @@ export const filterMiddleware: Middleware<{}, Store, any> = (store) => (
   const after = store.getState();
 
   // check if ANY filter change and start loading items form scratch
-  if (before.searchFilter !== after.searchFilter) {
+  if (
+    before.searchFilter !== after.searchFilter ||
+    before.selectedColors !== after.selectedColors
+  ) {
     console.log("Filters changed! Reset and load first chunk of data");
     store.dispatch(setPage(0));
     store.dispatch(resetScans());

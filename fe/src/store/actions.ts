@@ -1,10 +1,16 @@
-import { ADD_VR_SCANS, INIT_COLORS, RESET_VR_SCANS, SET_PAGE, SET_SEARCH_FILTER } from "./constants";
+import { ADD_VR_SCANS, INIT_COLORS, RESET_VR_SCANS, SET_PAGE, SET_SEARCH_FILTER, TOGGLE_COLOR_FILTER } from "./constants";
 import { Color, VRScan } from "./types";
 
 export const setSearchFilter = (value: string) => ({
   type: SET_SEARCH_FILTER,
   value,
 });
+
+export const toggleColorFilter = (value: number) => ({
+  type: TOGGLE_COLOR_FILTER,
+  value,
+});
+
 
 export const initColors = (value: Color[]) => ({
   type: INIT_COLORS,

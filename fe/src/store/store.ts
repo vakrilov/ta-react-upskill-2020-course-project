@@ -6,6 +6,7 @@ import {
   searchFilterReducer,
   vrScansReducer,
   pageReducer,
+  selectedColorsReducer,
 } from "./reducers";
 import { Store } from "./types";
 
@@ -16,6 +17,7 @@ const store = createStore<Store, any, {}, {}>(
   combineReducers({
     searchFilter: searchFilterReducer,
     colors: colorsReducer,
+    selectedColors: selectedColorsReducer,
     vrScans: vrScansReducer,
     page: pageReducer,
   }),

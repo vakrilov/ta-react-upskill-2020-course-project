@@ -14,6 +14,7 @@ export type Store = {
   // fetch on login
   colors: Color[];
 
+  selectedColors: number[];
   searchFilter: string;
 
   page: number;

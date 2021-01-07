@@ -5,6 +5,7 @@ import {
   RESET_VR_SCANS,
   SET_PAGE,
   SET_SEARCH_FILTER,
+  TOGGLE_COLOR_FILTER,
 } from "./constants";
 import { Color, VRScan } from "./types";
 
@@ -41,6 +42,24 @@ export const pageReducer: Reducer<number> = (state = 0, action) => {
   switch (action.type) {
     case SET_PAGE:
       return action.value;
+    default:
+      return state;
+  }
+};
+
+export const selectedColorsReducer: Reducer<number[]> = (
+  state = [],
+  action
+) => {
+  switch (action.type) {
+    case TOGGLE_COLOR_FILTER: {
+      const color: number = action.value;
+      if (state.includes(color)) {
+        return state.filter((c) => c !== color);
+      } else {
+        return [...state, color];
+      }
+    }
     default:
       return state;
   }

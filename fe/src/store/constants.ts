@@ -3,3 +3,4 @@ export const INIT_COLORS = "INIT_COLORS";
 export const ADD_VR_SCANS = "ADD_VR_SCANS";
 export const SET_PAGE = "SET_PAGE";
 export const RESET_VR_SCANS = "RESET_VR_SCANS";
+export const TOGGLE_COLOR_FILTER = "TOGGLE_COLOR_FILTER";
