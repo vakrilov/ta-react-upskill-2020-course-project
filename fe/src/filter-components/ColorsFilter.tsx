@@ -9,7 +9,7 @@ export const ColorsFilter: React.VFC = () => {
   return (
     <div className="color-filter">
       {colors.map((c: Color) => (
-        <div key={c.id} style={{ backgroundColor: c.hex }} className="color" />
+        <div key={c.id} style={{ backgroundColor: c.hex }} className="color">✔️</div>
       ))}
     </div>
   );
