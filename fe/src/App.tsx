@@ -10,12 +10,14 @@ function App() {
       <div className="header">
         <h1>VR Scans App</h1>
       </div>
-      <div className="filters">{/* <ColorsFilter></ColorsFilter> */}</div>
+      <div className="filters">
+        <ColorsFilter></ColorsFilter>
+      </div>
 
       <div className="list">
         <SearchFilter></SearchFilter>
 
-        {/* <VRScansList></VRScansList> */}
+        <VRScansList></VRScansList>
       </div>
     </div>
   );

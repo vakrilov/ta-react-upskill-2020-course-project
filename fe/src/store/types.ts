@@ -11,8 +11,11 @@ export type VRScan = {
 };
 
 export type Store = {
+  // fetch on login
   colors: Color[];
-  vrScans: VRScan[];
 
   searchFilter: string;
+
+  page: number;
+  vrScans: VRScan[];
 };

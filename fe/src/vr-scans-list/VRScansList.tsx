@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchVRScans } from "../store/async-actions";
+import { loadMoreScans } from "../store/async-actions";
 import { Store } from "../store/types";
 import "./VRScansList.css";
 
@@ -13,7 +13,7 @@ export const VRScansList: React.VFC = () => {
       const reachedBottom = el.scrollTop + el.clientHeight === el.scrollHeight;
       if (reachedBottom && scans.length) {
         console.log("Load more items...");
-        dispatch(fetchVRScans());
+        dispatch(loadMoreScans());
       }
     },
     [scans, dispatch]

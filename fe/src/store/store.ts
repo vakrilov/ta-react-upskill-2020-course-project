@@ -6,7 +6,7 @@ import {
   Middleware,
 } from "redux";
 import thunk from "redux-thunk";
-import { colorsReducer, searchFilterReducer, vrScansReducer } from "./reducers";
+import { colorsReducer, searchFilterReducer, vrScansReducer,pageReducer } from "./reducers";
 import { Store } from "./types";
 
 const composeEnhancers =
@@ -24,6 +24,7 @@ const store = createStore<Store, any, {}, {}>(
     searchFilter: searchFilterReducer,
     colors: colorsReducer,
     vrScans: vrScansReducer,
+    page: pageReducer
   }),
   composeEnhancers(applyMiddleware(thunk, logger))
 );
