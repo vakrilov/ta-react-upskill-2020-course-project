@@ -17,12 +17,12 @@ export const loadMoreScans = () => async (dispatch, getState) => {
 
   const pageToLoad = state.page + 1;
   const filter = state.searchFilter ? `name_like=${state.searchFilter}&` : "";
-  const pagination = `_page=${pageToLoad}&_limit=10&`;
+  const pagination = `_page=${pageToLoad}&_limit=18&`;
 
   const data = await fetch(`${URL}/vrscans?${filter}${pagination}`);
   const scans = await data.json();
 
-  await new Promise((resolve) => setTimeout(resolve, 500));
+  await new Promise((resolve) => setTimeout(resolve, 200));
 
   // console.log("Fetched VR Scans:", scans);
   dispatch(setPage(pageToLoad));
