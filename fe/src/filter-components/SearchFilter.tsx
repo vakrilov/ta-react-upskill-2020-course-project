@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setSearchFilter, Store } from "../store/store";
+import { setSearchFilter } from "../store/actions";
+import { Store } from "../store/types";
 
 export const SearchFilter: React.VFC = () => {
   const filter = useSelector((store: Store) => store.searchFilter);

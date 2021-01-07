@@ -14,7 +14,12 @@ function App() {
         <ColorsFilter></ColorsFilter>
       </div>
 
-      <div style={{ gridArea: "list" }}>
+      <div
+        style={{
+          gridArea: "list",
+          overflow: "hidden",
+        }}
+      >
         <SearchFilter></SearchFilter>
         <VRScansList></VRScansList>
       </div>

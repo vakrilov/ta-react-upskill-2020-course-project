@@ -1,19 +1,23 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchVRScans, Store } from "../store/store";
+import { fetchVRScans } from "../store/async-actions";
+import { Store } from "../store/types";
 import "./VRScansList.css";
 
 export const VRScansList: React.VFC = () => {
   const scans = useSelector((store: Store) => store.vrScans);
   const dispatch = useDispatch();
-  const handleScroll = (e) => {
-    const reachedBottom =
-      e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
-    if (reachedBottom) {
-      console.log("Load more items...");
-      dispatch(fetchVRScans())
-    }
-  };
+  const handleScroll = useCallback(
+    (e) => {
+      const el = e.target;
+      const reachedBottom = el.scrollTop + el.clientHeight === el.scrollHeight;
+      if (reachedBottom && scans.length) {
+        console.log("Load more items...");
+        dispatch(fetchVRScans());
+      }
+    },
+    [scans, dispatch]
+  );
 
   return (
     <div className="vr-scan-list" onScroll={handleScroll}>

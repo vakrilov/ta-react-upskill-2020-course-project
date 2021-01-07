@@ -2,9 +2,11 @@
   display: grid;
   margin: auto;
   width: 820px;
+  height: 100vh;
+  overflow: hidden;
   gap: 20px;
   grid-template-columns: 200px 600px;
-  grid-template-rows: 100px 800px;
+  grid-template-rows: auto 1fr;
   grid-template-areas:
     "header header"
     "filters list";

@@ -3,9 +3,13 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-
+import { fetchColors, fetchVRScans } from "./store/async-actions";
 import { Provider } from "react-redux";
 import store from "./store/store";
+
+// Make initial requests
+store.dispatch(fetchColors());
+store.dispatch(fetchVRScans());
 
 ReactDOM.render(
   <React.StrictMode>
