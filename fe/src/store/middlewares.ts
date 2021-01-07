@@ -19,7 +19,7 @@ export const filterMiddleware: Middleware<{}, Store, any> = (store) => (
   next(action);
   const after = store.getState();
 
-  // check if ANY filter change and start loading items form scratch
+  // If any of the filters changed - reset scans and trigger new load
   if (
     before.searchFilter !== after.searchFilter ||
     before.selectedColors !== after.selectedColors
