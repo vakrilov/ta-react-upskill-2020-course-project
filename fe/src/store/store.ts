@@ -1,11 +1,9 @@
-import { Dispatch } from "react";
 import {
   createStore,
   combineReducers,
   Reducer,
   applyMiddleware,
   compose,
-  AnyAction,
 } from "redux";
 import thunk from "redux-thunk";
 
@@ -14,10 +12,17 @@ const URL = "http://localhost:3000";
 const SET_SEARCH_FILTER = "SET_SEARCH_FILTER";
 const INIT_COLORS = "INIT_COLORS";
 
+// Example of filter: http://localhost:3000/vrscans?colors_like=(^|,)(7|17)(,|$)
+
 // TYPES
 export type Color = {
   id: number;
   hex: string;
+};
+
+export type Store = {
+  colors: Color[];
+  searchFilter: string;
 };
 
 // Actions
@@ -53,7 +58,7 @@ const colorsReducer: Reducer<Color[]> = (state = [], action) => {
 const composeEnhancers =
   (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore(
+const store = createStore<Store, any, {}, {}>(
   combineReducers({
     searchFilter: searchFilterReducer,
     colors: colorsReducer,
@@ -62,15 +67,15 @@ const store = createStore(
 );
 
 // INIT
-const dispatch = store.dispatch as any;
+const storeDispatch = store.dispatch;
 
-const fetchColors = async (dispatch: Dispatch<AnyAction>) => {
+const fetchColors = async (dispatch) => {
   const data = await fetch(`${URL}/colors`);
   const colors = await data.json();
   console.log("COLORS FETCHED", colors);
   dispatch(initColors(colors));
 };
-dispatch(fetchColors);
 
-export type Store = ReturnType<typeof store.getState>;
+storeDispatch(fetchColors);
+
 export default store;
