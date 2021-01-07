@@ -1,0 +1,26 @@
+.vr-scan-list {
+  display: flex;
+  width: 600px;
+  flex-wrap: wrap;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.vr-scan {
+  border: 1px solid lightblue;
+  margin: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.vr-scan > img {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 20px;
+}
+
+.vr-scan > span {
+  max-width: 120px;
+}

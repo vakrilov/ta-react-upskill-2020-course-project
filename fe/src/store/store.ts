@@ -11,6 +11,7 @@ import thunk from "redux-thunk";
 const URL = "http://localhost:3000";
 const SET_SEARCH_FILTER = "SET_SEARCH_FILTER";
 const INIT_COLORS = "INIT_COLORS";
+const ADD_VR_SCANS = "ADD_VR_SCANS";
 
 // Example of filter: http://localhost:3000/vrscans?colors_like=(^|,)(7|17)(,|$)
 
@@ -20,8 +21,17 @@ export type Color = {
   hex: string;
 };
 
+export type VRScan = {
+  id: number;
+  name: string;
+  thumb: string;
+  colors: number[];
+};
+
 export type Store = {
   colors: Color[];
+  vrScans: VRScan[];
+
   searchFilter: string;
 };
 
@@ -33,6 +43,11 @@ export const setSearchFilter = (value: string) => ({
 
 export const initColors = (value: Color[]) => ({
   type: INIT_COLORS,
+  value,
+});
+
+export const addScans = (value: VRScan[]) => ({
+  type: ADD_VR_SCANS,
   value,
 });
 
@@ -55,6 +70,15 @@ const colorsReducer: Reducer<Color[]> = (state = [], action) => {
   }
 };
 
+const vrScansReducer: Reducer<VRScan[]> = (state = [], action) => {
+  switch (action.type) {
+    case ADD_VR_SCANS:
+      return [...state, ...action.value];
+    default:
+      return state;
+  }
+};
+
 const composeEnhancers =
   (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -62,6 +86,7 @@ const store = createStore<Store, any, {}, {}>(
   combineReducers({
     searchFilter: searchFilterReducer,
     colors: colorsReducer,
+    vrScans: vrScansReducer,
   }),
   composeEnhancers(applyMiddleware(thunk))
 );
@@ -72,10 +97,18 @@ const storeDispatch = store.dispatch;
 const fetchColors = async (dispatch) => {
   const data = await fetch(`${URL}/colors`);
   const colors = await data.json();
-  console.log("COLORS FETCHED", colors);
+  console.log("Colors fetched:", colors);
   dispatch(initColors(colors));
 };
 
+const fetchVRScans = async (dispatch) => {
+  const data = await fetch(`${URL}/vrscans?_page=1&_limit=20`);
+  const scans = await data.json();
+  console.log("VR Scans fetched:", scans);
+  dispatch(addScans(scans));
+};
+
 storeDispatch(fetchColors);
+storeDispatch(fetchVRScans);
 
 export default store;

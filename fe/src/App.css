@@ -1,4 +1,11 @@
 .App {
-  text-align: center;
+  display: grid;
+  margin: auto;
+  width: 820px;
+  gap: 20px;
+  grid-template-columns: 200px 600px;
+  grid-template-rows: 100px 800px;
+  grid-template-areas:
+    "header header"
+    "filters list";
 }
-
