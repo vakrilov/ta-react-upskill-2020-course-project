@@ -1,11 +1,18 @@
-import { createStore, combineReducers, applyMiddleware, compose } from "redux";
+import {
+  createStore,
+  combineReducers,
+  applyMiddleware,
+  compose,
+  Middleware,
+} from "redux";
 import thunk from "redux-thunk";
 import { colorsReducer, searchFilterReducer, vrScansReducer } from "./reducers";
 import { Store } from "./types";
 
-
 const composeEnhancers =
   (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+// const logger: Middleware<{}, Store, any> = (store) => (next) => (action) => {};
 
 const store = createStore<Store, any, {}, {}>(
   combineReducers({
@@ -15,8 +22,5 @@ const store = createStore<Store, any, {}, {}>(
   }),
   composeEnhancers(applyMiddleware(thunk))
 );
-
-
-
 
 export default store;

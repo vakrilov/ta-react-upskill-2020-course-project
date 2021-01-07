@@ -11,3 +11,16 @@
     "header header"
     "filters list";
 }
+
+.header {
+  grid-area: header;
+}
+
+.filters {
+  grid-area: filters;
+}
+
+.list {
+  grid-area: list;
+  overflow: hidden;
+}

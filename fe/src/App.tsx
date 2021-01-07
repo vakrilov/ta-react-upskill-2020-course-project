@@ -7,21 +7,15 @@ import { VRScansList } from "./vr-scans-list/VRScansList";
 function App() {
   return (
     <div className="App">
-      <div style={{ gridArea: "header" }}>
-        <h1>VR SCANS App</h1>
+      <div className="header">
+        <h1>VR Scans App</h1>
       </div>
-      <div style={{ gridArea: "filters" }}>
-        <ColorsFilter></ColorsFilter>
-      </div>
+      <div className="filters">{/* <ColorsFilter></ColorsFilter> */}</div>
 
-      <div
-        style={{
-          gridArea: "list",
-          overflow: "hidden",
-        }}
-      >
+      <div className="list">
         <SearchFilter></SearchFilter>
-        <VRScansList></VRScansList>
+
+        {/* <VRScansList></VRScansList> */}
       </div>
     </div>
   );
